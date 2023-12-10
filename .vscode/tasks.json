@@ -1,0 +1,38 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: gcc.exe сборка main.c файла",
+            "command": "C:\\Program Files\\GCC\\bin\\gcc.exe",
+            "args": [
+                "-Wall",
+                "-pedantic",
+                "-ggdb",
+                "-fdiagnostics-color=always",
+                //"-g",
+                "-B",
+                "${workspaceFolder}\\",
+                //"${file}",
+                "-o",
+                //"${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${workspaceFolder}\\build\\bin.exe",
+
+                "${workspaceFolder}\\src\\ml\\ml.c",
+                "${workspaceFolder}\\src\\main.c"
+            ],
+            "options": {
+                //"cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Задача создана пользователем Johnta."
+        }
+    ],
+    "version": "2.0.0"
+}

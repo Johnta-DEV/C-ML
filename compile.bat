@@ -1,0 +1,1 @@
+gcc -std=c17 -Wall -pedantic -ggdb -B ./src/ -o ./build/bin.exe ./src/ml/ml.c ./src/main.c
