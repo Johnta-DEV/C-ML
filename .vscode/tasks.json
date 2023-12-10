@@ -9,6 +9,7 @@
                 "-pedantic",
                 "-ggdb",
                 "-fdiagnostics-color=always",
+                "-pthread",
                 //"-g",
                 "-B",
                 "${workspaceFolder}\\",
