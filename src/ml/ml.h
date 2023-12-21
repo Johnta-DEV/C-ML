@@ -2,6 +2,8 @@
 #define ML_HEADER
 
 #include <stddef.h>
+#include <stdbool.h>
+#include "ml-dataset.h"
 
 typedef struct MlNeuron MlNeuron;
 typedef struct MlModel MlModel;
@@ -13,19 +15,30 @@ struct MlNeuron
 	float* InputNeuronWeights;
 	size_t InputNeuronsCount;
 	size_t CurrentNeuronIndex;
+	float Bias;
+	float Value;
 };
 
 // Структура для хранения Machine Learning модели
 struct MlModel
 {
 	MlNeuron** NeuronLayers;
-	size_t NeuronLayersCount;
+	size_t* NeuronsPerLayer;
+	size_t LayersCount;
 };
 
-MlModel* MlCreateModel(size_t* layers, size_t layersCount);
+// Создать ML модель
+MlModel* MlCreateModel(size_t* layers, size_t layersCount, bool assignRandomWeights, float bias);
 
+// Функция активации неирона (MlNeuron)
+float ActivationFunc(MlNeuron* neurons, size_t neuronsCount, float bias);
 
+// Функция-сигмоид (используется например в активации неирона)
+float Sigmoid(float input);
 
-void MlPredict(MlModel* model);
+void MlPredict(MlModel* model, float* dataInput, int dataInputCount);
+
+// Обучить ML модель.
+void TrainMlModel(MlModel* model, MlDataset* dataset, float learningRate);
 
 #endif

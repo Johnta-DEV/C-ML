@@ -1,0 +1,17 @@
+{
+	"files.associations": {
+		"time.h": "c",
+		"random": "c",
+		"cstdlib": "c",
+		"johntalib.h": "c",
+		"functional": "c",
+		"stdbool.h": "c",
+		"types.h": "c",
+		"stat.h": "c",
+		"array": "c",
+		"string": "c",
+		"string_view": "c",
+		"stddef.h": "c",
+		"stdio.h": "c"
+	}
+}

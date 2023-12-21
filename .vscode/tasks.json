@@ -10,20 +10,25 @@
                 "-ggdb",
                 "-fdiagnostics-color=always",
                 "-pthread",
-                //"-g",
-                "-B",
-                "${workspaceFolder}\\",
-                //"${file}",
+                //"-I",
+                //"-B",
+                //"${workspaceFolder}\\",
                 "-o",
-                //"${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "${workspaceFolder}\\build\\bin.exe",
 
+                "${workspaceFolder}\\src\\main.c",
                 "${workspaceFolder}\\src\\ml\\ml.c",
-                "${workspaceFolder}\\src\\main.c"
+                "${workspaceFolder}\\src\\ml\\ml-dataset.c",
+                "${workspaceFolder}\\src\\random\\random.c",
+                "${workspaceFolder}\\src\\thread\\thread.c",
+                "${workspaceFolder}\\src\\johntalib\\johntalib.c",
+                "${workspaceFolder}\\src\\disk\\diskSpace.c",
+                "${workspaceFolder}\\src\\string\\johntalib_string.c",
             ],
             "options": {
                 //"cwd": "${fileDirname}"
-                "cwd": "${workspaceFolder}"
+                //"cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}/build"
             },
             "problemMatcher": [
                 "$gcc"

@@ -1,12 +1,20 @@
-#include "stdlib.h"
-#include "time.h"
+#ifndef RANDOM_HEADER
+#define RANDOM_HEADER
 
-size_t rnd_previousRand = 0;
+#include <stddef.h>
 
-size_t Random()
-{
-	srand((unsigned)time(NULL) + rnd_previousRand);
-	size_t rnd = rand();
-	rnd_previousRand = rnd;
-	return rnd;
-}
+size_t Random();
+
+float RandomFloat(float min, float max);
+
+float Random01();
+
+float Lerp(float a, float b, float value);
+
+float InverseLerp(float a, float b, float value);
+
+float Clamp(float min, float max, float value);
+
+float Clamp01(float value);
+
+#endif

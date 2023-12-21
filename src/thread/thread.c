@@ -1,6 +1,6 @@
 #include "pthread.h"
 
-#include "threads.h"
+#include "thread.h"
 
 void WaitAllThreads(pthread_t* threads, size_t threadsCount)
 {

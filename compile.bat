@@ -1,1 +1,1 @@
-gcc -std=c17 -Wall -pedantic -ggdb -pthread -B ./src/ -o ./build/bin.exe ./src/ml/ml.c ./src/main.c
+gcc -std=c17 -Wall -pedantic -ggdb -pthread -o ./build/bin.exe ./src/main.c ./src/ml/ml.c ./src/ml/ml-dataset.c ./src/random/random.c ./src/thread/thread.c ./src/string/johntalib_string.c ./src/disk/diskSpace.c ./src/johntalib/johntalib.c
