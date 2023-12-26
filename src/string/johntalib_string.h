@@ -7,6 +7,6 @@ bool IsPathDirectory(const char* fullPath);
 
 bool IsPathFile(const char* fullPath);
 
-char** GetFilesInDirectory(const char* fullPath, size_t* outCount);
+char** GetFilesInDirectory(const char* fullPath, size_t* outFilesCount);
 
 #endif

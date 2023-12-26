@@ -18,17 +18,72 @@
 
 #include "disk/diskSpace.h"
 
+typedef enum Vegitables
+{
+	UnknownVegitable = 0,
+	Bean = 1,
+	BittegGourd = 2,
+	BottleGourd = 3,
+	Brinjal = 4,
+	Broccoli = 5,
+	Cabbage = 6,
+	Capsicum = 7,
+	Carrot = 8,
+	Cauliflower = 9,
+	Cucumber = 10,
+	Papaya = 11,
+	Potato = 12,
+	Pumkin = 13,
+	Radish = 14,
+	Tomato = 15
+} Vegitables;
 
-int main()
+int main(int argc, char *argv[])
 {
 	// Подключение кириллицы
 	//setlocale(LC_ALL, "UTF8");
+	#define DATASET_TRAIN_LOCATION "A:\\GitHub\\C\\samples\\Dataset\\ppm\\train\\"
+	#define PATH_TO_SAVE_ML_MODEL "A:\\GitHub\\C\\mlmodels\\"
 
 	#define LAYERS_COUNT 3
 	size_t layers[LAYERS_COUNT] = {5, 6, 3};
 	
+	// Создаём модель	
+	MlModel* pMlModel = MlCreateModel(layers, LAYERS_COUNT, true, 0.5);
+
+	// Загружаем датасет
+	MlDataset* pTrainDataset = LoadPPMDataset(DATASET_TRAIN_LOCATION);
+
+	// Тренеруем модель
+	TrainMlModel(pMlModel, pTrainDataset, 0.08);
 	
-	MlCreateModel(layers, LAYERS_COUNT, true, 0.5);
+	// Сохраняем модель
+	SaveMlModel(pMlModel, PATH_TO_SAVE_ML_MODEL);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// MlModel* model = MlCreateModel(layers, LAYERS_COUNT, true, 0.5);
 
@@ -55,7 +110,6 @@ int main()
 
 
 	//MlLoadPPMImage("Test.ppm", 0);
-	LoadPPMDataset("");
 
 	//double total;
 	//double free = GetDiskFreeSpaceMB(".", &total);
@@ -74,8 +128,17 @@ int main()
 	// printf("Value 2: %u", *((int*)item->ptr));
 
 
-	size_t count;
-	char** result = GetFilesInDirectory("C:\\", &count);
+	// size_t count;
+	// Stopwatch sw;
+	// StartStopwatch(&sw);
+	// printf("Starting stopwatch...\n");
+
+	// char** result = GetFilesInDirectory(DATASET_TRAIN_LOCATION, &count);
+	
+	// double elapsedTime = StopStopwatch(&sw);
+	// printf("Stopwatch stopped! Elapsed: %f ms\n", elapsedTime);
+
+
 // #pragma region Multithreading
 // 	// #define THREADS_COUNT 3
 // 	// printf("Creating %u threads...\n", THREADS_COUNT);

@@ -41,4 +41,9 @@ void MlPredict(MlModel* model, float* dataInput, int dataInputCount);
 // Обучить ML модель.
 void TrainMlModel(MlModel* model, MlDataset* dataset, float learningRate);
 
+// Загрузить ML модель с диска
+MlModel* LoadMlModel(const char* fullPath);
+// Сохранить модель
+bool SaveMlModel(MlModel* model, const char* fullPath);
+
 #endif

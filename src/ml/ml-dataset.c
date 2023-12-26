@@ -127,7 +127,7 @@ MlDataset* LoadPPMDataset(const char* relativeFolderPath)
   
     if (directory == NULL) 
     { 
-        printf("Could not open directory: %s", directoryPath );
+        printf("Could not open directory: %s\n", directoryPath );
         return 0; 
     } 
   

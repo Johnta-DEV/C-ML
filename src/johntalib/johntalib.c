@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <time.h>
 
 #include "johntalib.h"
 
@@ -146,3 +147,23 @@ void FreeLinkedList(LinkedList* list)
     free(list);
 }
 
+
+void StartStopwatch(Stopwatch* p_sw)
+{
+    assert(p_sw != NULL);
+
+    p_sw->StartTime = clock();
+    p_sw->EndTime = p_sw->StartTime;
+    p_sw->IsRunning = true;
+}
+
+double StopStopwatch(Stopwatch* p_sw)
+{
+    assert(p_sw != NULL);
+
+    p_sw->EndTime = clock();
+    p_sw->IsRunning = false;
+    p_sw->ElapsedTime = p_sw->EndTime - p_sw->StartTime;
+
+    return p_sw->ElapsedTime;
+}

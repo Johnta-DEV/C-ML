@@ -17,7 +17,7 @@ bool IsPathDirectory(const char* fullPath)
 	return isDirectory;
 }
 
-// НЕ РАБОТАЭ
+// TODO: НЕ РАБОТАЭ
 bool IsPathFile(const char* fullPath)
 {
 	DWORD attrs = GetFileAttributesA(fullPath);
@@ -26,10 +26,10 @@ bool IsPathFile(const char* fullPath)
 	return isFile;
 }
 
-char** GetFilesInDirectory(const char* fullPath, size_t* outCount)
+char** GetFilesInDirectory(const char* fullPath, size_t* outFilesCount)
 {
 	assert(fullPath != NULL);
-	assert(outCount != NULL);
+	assert(outFilesCount != NULL);
 
 	LinkedList* filesList = CreateLinkedList();
 
@@ -37,10 +37,10 @@ char** GetFilesInDirectory(const char* fullPath, size_t* outCount)
 	char* searchDir = AppendCharArray(fullPath, "*", false); 
 	HANDLE hFind = FindFirstFile(searchDir, &data); 
 	
-    if ( hFind != INVALID_HANDLE_VALUE ) {
+    if (hFind != INVALID_HANDLE_VALUE) {
         do {
 			char* fullPathOfItem = AppendCharArray(fullPath, &(data.cFileName), false);
-			bool isFile = IsPathFile(fullPathOfItem);
+			bool isFile = IsPathDirectory(fullPathOfItem) == false;
 			if (isFile)
 			{
 				AddItemToLinkedList(filesList, fullPathOfItem, sizeof(char*));
@@ -50,7 +50,6 @@ char** GetFilesInDirectory(const char* fullPath, size_t* outCount)
 				free(fullPathOfItem);
 			}
             //printf("--File: %s type: %s, is directory: %u\n", data.cFileName, fileType, isDirectory);
-
         } while (FindNextFile(hFind, &data));
         FindClose(hFind);
     }
@@ -62,7 +61,7 @@ char** GetFilesInDirectory(const char* fullPath, size_t* outCount)
 		result[i] = (char*)(GetItemFromLinkedList(filesList, i)->ptr);
 	}
 
-	*outCount = filesList->count;
+	*outFilesCount = filesList->count;
 	FreeLinkedList(filesList);
 
 	return result;

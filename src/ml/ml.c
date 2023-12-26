@@ -100,12 +100,23 @@ void MlPredict(MlModel* trainedModel, float* dataInput, int dataInputCount)
 	
 	//trainedModel->
 
-	printf("Ml model not empty... Yeeeeeah!");
+	printf("Ml model not empty... Yeeeeeah!\n");
 }
 
 void TrainMlModel(MlModel* model, MlDataset* dataset, float learningRate)
 {
+	printf("TODO: MlModel training is NOT IMPLEMENTED!\n");
+}
 
+
+MlModel* LoadMlModel(const char* fullPath)
+{
+	printf("TODO: Load of MlModel is NOT IMPLEMENTED!\n");
+}
+
+bool SaveMlModel(MlModel* model, const char* fullPath)
+{
+	printf("TODO: MlModel saving is NOT IMPLEMENTED!\n");
 }
 
 float CalculateNewNeuronWeight(float currentWeight, float learningRate, float expectedValue, 
