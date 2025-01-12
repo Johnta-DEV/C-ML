@@ -9,6 +9,7 @@
 
 #include "ml-dataset.h"
 #include "../johntalib/johntalib.h"
+#include "../string/johntalib_string.h"
 
 #define PPM_FILE_HEADER_OFFSET 12
 
@@ -97,14 +98,52 @@ MlDataset* LoadPPMDataset(const char* relativeFolderPath)
     //
     // Получаем полный путь к рабочей директории и сохраняем её в переменную workingDir 
     //
-    char workingDir[MAX_FILE_PATH];
-    getcwd(workingDir, sizeof(workingDir));
+    char workingDir[MAX_FILE_PATH] = { 0 };
+    //getcwd(workingDir, sizeof(workingDir));
 
     //
     // Добавляем к строке относительный путь к файлу
     //
-    char* fullDirectoryPath = AppendCharArray(workingDir, "\\", false);
-    fullDirectoryPath = AppendCharArray(fullDirectoryPath, relativeFolderPath, false);
+    memcpy(workingDir, relativeFolderPath, strlen(relativeFolderPath));
+    char* fullDirectoryPath = &workingDir;
+    size_t pathLength = strlen(fullDirectoryPath);
+
+    if (fullDirectoryPath[pathLength - 1] != '\\')
+        fullDirectoryPath = AppendCharArray(fullDirectoryPath, "\\", false);
+
+    //fullDirectoryPath = AppendCharArray(fullDirectoryPath, relativeFolderPath, false);
+
+    //
+    // Получаем список всех суб директорий
+    //
+    size_t subFoldersCount = 0;
+    char** pSubdirectories = GetSubdirectoriesInDirectory(fullDirectoryPath, &subFoldersCount);
+
+    long currentCategory = 0;
+    for (size_t i = 0; i < subFoldersCount; i++)
+    {
+        // Отделять из пути всё что после последнего слеша и это пихать в atoi
+        char* currentFolderFullPath = pSubdirectories[i];
+        
+        char* currentFolderName = GetLastItemFromPath(currentFolderFullPath);
+
+        currentCategory = atoi(currentFolderName);
+
+        // Если имя папки - число, значит это категория
+        if (currentCategory > 0)
+        {
+
+        }
+    }
+    
+    //
+    // Чистим чистим
+    //
+    for (size_t i = 0; i < subFoldersCount; i++)
+        free(pSubdirectories[i]);
+    
+
+
 
     //
     // Конвертируем строку в int через atoi()

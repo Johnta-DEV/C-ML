@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
 	// StartStopwatch(&sw);
 	// printf("Starting stopwatch...\n");
 
-	// char** result = GetFilesInDirectory(DATASET_TRAIN_LOCATION, &count);
+	// char** result = GetItemsInDirectory(DATASET_TRAIN_LOCATION, &count);
 	
 	// double elapsedTime = StopStopwatch(&sw);
 	// printf("Stopwatch stopped! Elapsed: %f ms\n", elapsedTime);
